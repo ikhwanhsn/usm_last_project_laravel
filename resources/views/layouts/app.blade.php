@@ -9,6 +9,7 @@
 
         <!-- Fonts -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
@@ -16,10 +17,10 @@
         <div x-data="{ sidebarOpen: false }" class="flex h-screen bg-slate-200 font-roboto">
             @include('layouts.navigation')
 
-            <div class="flex overflow-hidden flex-col flex-1">
+            <div class="flex flex-col flex-1 overflow-hidden">
                 @include('layouts.header')
 
-                <main class="overflow-y-auto overflow-x-hidden flex-1 bg-slate-200">
+                <main class="flex-1 overflow-x-hidden overflow-y-auto bg-slate-200">
                     <div class="container px-6 py-8 mx-auto">
                         @if (isset($header))
                             <h3 class="mb-4 text-3xl font-medium text-gray-700">
