@@ -17,7 +17,6 @@ return new class extends Migration
             $table->foreign('id_products')->references('id_products')->on('products');
             $table->integer('jumlah');
             $table->decimal('total', 10, 2);
-            $table->dateTime('tanggal_penjualan');
             $table->timestamps();
         });
 

@@ -18,4 +18,5 @@
             <div class="text-orange-500 radial-progress" style="--value:20;" role="progressbar">20%</div>
         </div>
     </div>
+    <a href="/create/produk">Tambah produk</a>
 </div>

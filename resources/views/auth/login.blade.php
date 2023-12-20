@@ -1,6 +1,6 @@
 <x-guest-layout>
-    <a href="/" class="flex justify-center items-center">
-        <x-application-logo class="w-20 h-20 fill-current text-gray-500"/>
+    <a href="/" class="flex items-center justify-center">
+        <x-application-logo class="w-20 h-20 text-gray-500 fill-current"/>
     </a>
 
     <!-- Session Status -->
@@ -38,14 +38,14 @@
             <!-- Remember Me -->
             <div>
                 <label class="inline-flex items-center">
-                    <input type="checkbox" class="form-checkbox text-indigo-600" name="remember">
-                    <span class="mx-2 text-gray-600 text-sm">{{ __('Remember me') }}</span>
+                    <input type="checkbox" class="text-indigo-600 form-checkbox" name="remember">
+                    <span class="mx-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
                 </label>
             </div>
 
             <div>
                 @if (Route::has('password.request'))
-                    <a class="block text-sm fontme text-indigo-700 hover:underline"
+                    <a class="block text-sm text-indigo-700 fontme hover:underline"
                        href="{{ route('password.request') }}">{{ __('Forgot your password?') }}</a>
                 @endif
             </div>
@@ -55,6 +55,10 @@
             <x-primary-button class="w-full">
                 {{ __('Log in') }}
             </x-primary-button>
+        </div>
+
+        <div class="mt-2 text-center">
+            <span class="mx-2 text-sm text-gray-600">Don't have an account? <a href="{{ route('register') }}" class="text-indigo-700 hover:underline">Register</a></span>
         </div>
 
     </form>
