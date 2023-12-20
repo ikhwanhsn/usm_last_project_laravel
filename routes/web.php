@@ -43,11 +43,11 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     // tabel penjualan
-    Route::get('/create/produk', [ProdukController::class, 'create'])->name('produk.create');
-    Route::post('/store/produk', [ProdukController::class, 'store'])->name('produk.store');
-    Route::get('/update/produk/{id}', [ProdukController::class, 'update'])->name('produk.update');
-    Route::post('/edit', [ProdukController::class, 'edit'])->name('produk.edit');
-    Route::get('/delete/{id}', [ProdukController::class, 'delete'])->name('produk.delete');
+    Route::get('/create/penjualan', [PenjualanController::class, 'create'])->name('penjualan.create');
+    Route::post('/store/penjualan', [PenjualanController::class, 'store'])->name('penjualan.store');
+    Route::get('/update/penjualan/{id}', [PenjualanController::class, 'update'])->name('penjualan.update');
+    Route::post('/edit', [PenjualanController::class, 'edit'])->name('penjualan.edit');
+    Route::get('/delete/{id}', [PenjualanController::class, 'delete'])->name('penjualan.delete');
 
     // tabel produk
     Route::get('/create/produk', [ProdukController::class, 'create'])->name('produk.create');
@@ -57,11 +57,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/delete/{id}', [ProdukController::class, 'delete'])->name('produk.delete');
 
     // tabel pelanggan
-    Route::get('/create/produk', [ProdukController::class, 'create'])->name('produk.create');
-    Route::post('/store/produk', [ProdukController::class, 'store'])->name('produk.store');
-    Route::get('/update/produk/{id}', [ProdukController::class, 'update'])->name('produk.update');
-    Route::post('/edit', [ProdukController::class, 'edit'])->name('produk.edit');
-    Route::get('/delete/{id}', [ProdukController::class, 'delete'])->name('produk.delete');
+    Route::get('/create/pelanggan', [PelangganController::class, 'create'])->name('pelanggan.create');
+    Route::post('/store/pelanggan', [PelangganController::class, 'store'])->name('pelanggan.store');
+    Route::get('/update/pelanggan/{id}', [PelangganController::class, 'update'])->name('pelanggan.update');
+    Route::post('/edit', [PelangganController::class, 'edit'])->name('pelanggan.edit');
+    Route::get('/delete/{id}', [PelangganController::class, 'delete'])->name('pelanggan.delete');
 });
 
 require __DIR__.'/auth.php';

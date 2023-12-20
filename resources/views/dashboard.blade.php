@@ -10,8 +10,4 @@
     <div class="mb-3">
         @include('components/grafik-penjualan')
     </div>
-
-    <div>
-        @include('components/data-table')
-    </div>
 </x-app-layout>
