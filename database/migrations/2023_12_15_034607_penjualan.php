@@ -13,10 +13,13 @@ return new class extends Migration
     {
         Schema::create('penjualan', function (Blueprint $table) {
             $table->increments('id_penjualan');
-            $table->unsignedInteger('id_products');
-            $table->foreign('id_products')->references('id_products')->on('products');
+            $table->unsignedInteger('id_produk');
+            $table->foreign('id_produk')->references('id_produk')->on('produk');
+            $table->string('nama_produk');
+            $table->index('nama_produk');
+            $table->integer('harga');
             $table->integer('jumlah');
-            $table->decimal('total', 10, 2);
+            $table->integer('total');
             $table->timestamps();
         });
 

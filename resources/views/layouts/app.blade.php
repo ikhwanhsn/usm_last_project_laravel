@@ -12,6 +12,17 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
         
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+        <style>
+            .alert-fade-out {
+                animation: fadeOut 3s ease-in-out forwards;
+            }
+
+            @keyframes fadeOut {
+                0% { opacity: 1; }
+                75% { opacity: 1; }
+                100% { opacity: 0; display: none; }
+            }
+        </style>
     </head>
     <body>
         <div x-data="{ sidebarOpen: false }" class="flex h-screen bg-slate-200 font-roboto">

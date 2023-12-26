@@ -42,26 +42,26 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    // tabel penjualan
-    Route::get('/create/penjualan', [PenjualanController::class, 'create'])->name('penjualan.create');
-    Route::post('/store/penjualan', [PenjualanController::class, 'store'])->name('penjualan.store');
-    Route::get('/update/penjualan/{id}', [PenjualanController::class, 'update'])->name('penjualan.update');
-    Route::post('/edit', [PenjualanController::class, 'edit'])->name('penjualan.edit');
-    Route::get('/delete/{id}', [PenjualanController::class, 'delete'])->name('penjualan.delete');
-
     // tabel produk
-    Route::get('/create/produk', [ProdukController::class, 'create'])->name('produk.create');
-    Route::post('/store/produk', [ProdukController::class, 'store'])->name('produk.store');
-    Route::get('/update/produk/{id}', [ProdukController::class, 'update'])->name('produk.update');
-    Route::post('/edit', [ProdukController::class, 'edit'])->name('produk.edit');
-    Route::get('/delete/{id}', [ProdukController::class, 'delete'])->name('produk.delete');
-
+    Route::get('/produk/create', [ProdukController::class, 'create'])->name('produk.create');
+    Route::post('/produk/save', [ProdukController::class, 'save'])->name('produk.save');
+    Route::get('/produk/update/{id}', [ProdukController::class, 'update'])->name('produk.update');
+    Route::post('/produk/edit', [ProdukController::class, 'edit']);
+    Route::get('/produk/delete/{id}', [ProdukController::class, 'delete'])->name('produk.delete');
+    
     // tabel pelanggan
-    Route::get('/create/pelanggan', [PelangganController::class, 'create'])->name('pelanggan.create');
-    Route::post('/store/pelanggan', [PelangganController::class, 'store'])->name('pelanggan.store');
-    Route::get('/update/pelanggan/{id}', [PelangganController::class, 'update'])->name('pelanggan.update');
-    Route::post('/edit', [PelangganController::class, 'edit'])->name('pelanggan.edit');
-    Route::get('/delete/{id}', [PelangganController::class, 'delete'])->name('pelanggan.delete');
+    Route::get('/pelanggan/create', [PelangganController::class, 'create'])->name('pelanggan.create');
+    Route::post('/pelanggan/save', [PelangganController::class, 'save'])->name('pelanggan.save');
+    Route::get('/pelanggan/update/{id}', [PelangganController::class, 'update'])->name('pelanggan.update');
+    Route::post('/pelanggan/edit', [PelangganController::class, 'edit']);
+    Route::get('/pelanggan/delete/{id}', [PelangganController::class, 'delete'])->name('pelanggan.delete');
+    
+    // tabel penjualan
+    Route::get('/penjualan/create', [PenjualanController::class, 'create'])->name('penjualan.create');
+    Route::post('/penjualan/save', [PenjualanController::class, 'save'])->name('penjualan.save');
+    Route::get('/penjualan/update/{id}', [PenjualanController::class, 'update'])->name('penjualan.update');
+    Route::post('/penjualan/edit', [PenjualanController::class, 'edit']);
+    Route::get('/penjualan/delete/{id}', [PenjualanController::class, 'delete'])->name('penjualan.delete');
 });
 
 require __DIR__.'/auth.php';
