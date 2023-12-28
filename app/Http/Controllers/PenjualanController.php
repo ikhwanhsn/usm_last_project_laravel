@@ -51,9 +51,9 @@ class PenjualanController extends Controller
             $produk->stok -= $request->jumlah;
             $produk->save();
 
-            return redirect('/penjualan')->with('pesan', 'Data dengan nama: ' . $request->nama_produk . ' berhasil ditambahkan');
+            return redirect('/penjualan/read')->with('pesan', 'Data dengan nama: ' . $request->nama_produk . ' berhasil ditambahkan');
         } else {
-            return redirect('/penjualan')->with('error', 'Produk tidak ditemukan.');
+            return redirect('/penjualan/read')->with('error', 'Produk tidak ditemukan.');
         }
     }
 
@@ -86,7 +86,7 @@ class PenjualanController extends Controller
         $data = Penjualan::find($request->id_penjualan);
 
         if (!$data) {
-            return redirect('/penjualan')->with('error', 'Data tidak ditemukan.');
+            return redirect('/penjualan/read')->with('error', 'Data tidak ditemukan.');
         }
 
         $data->nama_produk = $request->nama_produk;
@@ -96,13 +96,13 @@ class PenjualanController extends Controller
         $data->updated_at = now();
         $data->save();
         
-        return redirect('/penjualan')->with('pesan', 'Data dengan nama: ' . $request->nama_produk . ' berhasil diupdate');
+        return redirect('/penjualan/read')->with('pesan', 'Data dengan nama: ' . $request->nama_produk . ' berhasil diupdate');
     }
 
     public function delete($id_penjualan){
         $penjualan = Penjualan::find($id_penjualan);
         $penjualan->delete();
-        return redirect('/penjualan')->with('pesan', 'Data penjualan berhasil dihapus.');
+        return redirect('/penjualan/read')->with('pesan', 'Data penjualan berhasil dihapus.');
     }
 
     public function produk()

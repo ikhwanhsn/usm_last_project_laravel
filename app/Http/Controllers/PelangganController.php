@@ -33,7 +33,7 @@ class PelangganController extends Controller
         $model->save();
 
         $dataAll = $model->all();
-        return redirect('/pelanggan')->with('pesan', 'Data dengan nama: ' . $request->nama_pelanggan . ' berhasil ditambahkan');
+        return redirect('/pelanggan/read')->with('pesan', 'Data dengan nama: ' . $request->nama_pelanggan . ' berhasil ditambahkan');
     }
 
     public function read(){
@@ -60,7 +60,7 @@ class PelangganController extends Controller
         $data = Pelanggan::find($request->id_pelanggan);
 
         if (!$data) {
-            return redirect('/pelanggan')->with('error', 'Data tidak ditemukan.');
+            return redirect('/pelanggan/read')->with('error', 'Data tidak ditemukan.');
         }
 
         $data->nama_pelanggan = $request->nama_pelanggan;
@@ -69,12 +69,12 @@ class PelangganController extends Controller
         $data->updated_at = now();
         $data->save();
         
-        return redirect('/pelanggan')->with('pesan', 'Data dengan nama: ' . $request->nama_pelanggan . ' berhasil diupdate');
+        return redirect('/pelanggan/read')->with('pesan', 'Data dengan nama: ' . $request->nama_pelanggan . ' berhasil diupdate');
     }
 
     public function delete($id_pelanggan){
         $pelanggan = Pelanggan::find($id_pelanggan);
         $pelanggan->delete();
-        return redirect('/pelanggan')->with('pesan', 'Data pelanggan berhasil dihapus.');
+        return redirect('/pelanggan/read')->with('pesan', 'Data pelanggan berhasil dihapus.');
     }
 }

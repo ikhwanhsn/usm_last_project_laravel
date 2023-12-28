@@ -62,7 +62,7 @@
                 <x-primary-button class="w-full">
                     {{ __('Simpan') }}
                 </x-primary-button>
-                <a href="/produk" class="w-full px-4 py-2 mt-2 text-sm text-center text-white bg-red-500 rounded-md hover:bg-red-600">
+                <a href="/produk/read" class="w-full px-4 py-2 mt-2 text-sm text-center text-white bg-red-500 rounded-md hover:bg-red-600">
                 <button>Batal</button>
                 </a>
             </div>

@@ -24,21 +24,21 @@
             {{ __('Dashboard') }}
         </x-nav-link>
 
-        <x-nav-link href="{{ route('penjualan.index') }}" :active="request()->routeIs('penjualan')">
+        <x-nav-link href="{{ route('penjualan.index') }}" :active="request()->routeIs('penjualan.index')">
             <x-slot name="icon">
-            <span class="material-symbols-outlined">payments</span>
+                <span class="material-symbols-outlined">payments</span>
             </x-slot>
             {{ __('Penjualan') }}
         </x-nav-link>
 
-        <x-nav-link href="{{ route('produk.index') }}" :active="request()->routeIs('produk')">
+        <x-nav-link href="{{ route('produk.index') }}" :active="request()->routeIs('produk.index')">
             <x-slot name="icon">
                 <span class="material-symbols-outlined">storefront</span>
             </x-slot>
             {{ __('Produk') }}
         </x-nav-link>
 
-        <x-nav-link href="{{ route('pelanggan.index') }}" :active="request()->routeIs('pelanggan')">
+        <x-nav-link href="{{ route('pelanggan.index') }}" :active="request()->routeIs('pelanggan.index')">
             <x-slot name="icon">
             <span class="material-symbols-outlined">contacts</span>
             </x-slot>

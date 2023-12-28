@@ -31,18 +31,16 @@ Route::get('/dashboard', function () {
 Route::middleware('auth')->group(function () {
     Route::view('about', 'about')->name('about');
 
-    // route
-    Route::get('penjualan', [PenjualanController::class, 'index'])->name('penjualan.index');
-    Route::get('produk', [ProdukController::class, 'index'])->name('produk.index');
-    Route::get('pelanggan', [PelangganController::class, 'index'])->name('pelanggan.index');
-    Route::get('users', [UserController::class, 'index'])->name('users.index');
-
     // tabel user
+    Route::get('users', [UserController::class, 'index'])->name('users.index');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     // tabel produk
+    Route::get('/produk/read', [ProdukController::class, 'index'])->name('produk.index');
+    Route::get('/produk/editfoto/{id}', [ProdukController::class, 'editfoto'])->name('produk.editfoto');
+    Route::post('/produk/update-foto/{id_produk}', [ProdukController::class, 'updateFoto']);
     Route::get('/produk/create', [ProdukController::class, 'create'])->name('produk.create');
     Route::post('/produk/save', [ProdukController::class, 'save'])->name('produk.save');
     Route::get('/produk/update/{id}', [ProdukController::class, 'update'])->name('produk.update');
@@ -50,6 +48,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/produk/delete/{id}', [ProdukController::class, 'delete'])->name('produk.delete');
     
     // tabel pelanggan
+    Route::get('/pelanggan/read', [PelangganController::class, 'index'])->name('pelanggan.index');
     Route::get('/pelanggan/create', [PelangganController::class, 'create'])->name('pelanggan.create');
     Route::post('/pelanggan/save', [PelangganController::class, 'save'])->name('pelanggan.save');
     Route::get('/pelanggan/update/{id}', [PelangganController::class, 'update'])->name('pelanggan.update');
@@ -57,6 +56,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/pelanggan/delete/{id}', [PelangganController::class, 'delete'])->name('pelanggan.delete');
     
     // tabel penjualan
+    Route::get('/penjualan/read', [PenjualanController::class, 'index'])->name('penjualan.index');
     Route::get('/penjualan/create', [PenjualanController::class, 'create'])->name('penjualan.create');
     Route::post('/penjualan/save', [PenjualanController::class, 'save'])->name('penjualan.save');
     Route::get('/penjualan/update/{id}', [PenjualanController::class, 'update'])->name('penjualan.update');

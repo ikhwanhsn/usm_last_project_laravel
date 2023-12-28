@@ -14,6 +14,44 @@ class ProdukController extends Controller
         $dataAll = $model->all();
         return view('produk.index', ['dataAll' => $dataAll]);
     }
+    public function editfoto($id_produk)
+    {
+        $produk = Produk::find($id_produk);
+        if ($produk) {
+            return view('produk.editfoto', compact('produk'));
+        } else {
+            return redirect('/produk/read')->with('error', 'Data produk tidak ditemukan.');
+        }
+    }
+
+    public function updateFoto(Request $request, $id_produk)
+    {
+        // Validate the incoming request data
+        $request->validate([
+            'new_foto' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        // Find the product by ID
+        $produk = Produk::find($id_produk);
+
+        // Check if the product exists
+        if (!$produk) {
+            return redirect('/produk/read')->with('error', 'Produk not found.');
+        }
+
+        // Handle file upload
+        if ($request->hasFile('new_foto')) {
+            $file = $request->file('new_foto');
+            $fileName = time() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('path/to/your/upload/directory'), $fileName);
+
+            // Update the 'foto' column in the database
+            $produk->foto = $fileName;
+            $produk->save();
+        }
+
+        return redirect('/produk/read')->with('pesan', 'Foto produk berhasil diupdate.');
+    }
     
     public function create(){
         return view('produk.create');
@@ -25,19 +63,33 @@ class ProdukController extends Controller
             'harga' => 'required|numeric|max:100000',
             'stok' => 'required|numeric|max:100',
             'kategori' => 'required|string|max:25',
+            'foto' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Add image validation rules
         ]);
-        
-        // Menyimpan nama file di database
+    
+        // Create a new Produk instance
         $model = new Produk();
         $model->nama_produk = $request->nama_produk;
         $model->harga = $request->harga;
         $model->stok = $request->stok;
         $model->kategori = $request->kategori;
+    
+        // Check if a file is uploaded
+        if ($request->hasFile('foto')) {
+            $file = $request->file('foto');
+            $fileName = time() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('path/to/your/upload/directory'), $fileName);
+    
+            // Save the file name to the 'foto' column in the database
+            $model->foto = $fileName;
+        }
+    
+        // Save the model to the database
         $model->save();
-
-        $dataAll = $model->all();
-        return redirect('/produk')->with('pesan', 'Data dengan nama: ' . $request->nama_produk . ' berhasil ditambahkan');
+    
+        // Redirect to the read page
+        return redirect('/produk/read')->with('pesan', 'Data dengan nama: ' . $request->nama_produk . ' berhasil ditambahkan');
     }
+    
 
     public function read(){
         $model = new Produk();
@@ -60,12 +112,13 @@ class ProdukController extends Controller
             'harga' => 'required|numeric|max:100000',
             'stok' => 'required|numeric|max:100',
             'kategori' => 'required|string|max:25',
+            'foto' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
         $data = Produk::find($request->id_produk);
 
         if (!$data) {
-            return redirect('/produk')->with('error', 'Data tidak ditemukan.');
+            return redirect('/produk/read')->with('error', 'Data tidak ditemukan.');
         }
 
         $data->nama_produk = $request->nama_produk;
@@ -73,6 +126,16 @@ class ProdukController extends Controller
         $data->stok = $request->stok;
         $data->kategori = $request->kategori;
         $data->updated_at = now();
+        if ($request->hasFile('foto')) {
+            // Hapus foto lama jika ada
+            if ($produk->foto) {
+                Storage::delete('public/foto_produk/' . $produk->foto);
+            }
+
+            // Simpan foto baru
+            $fotoPath = $request->file('foto')->store('public/foto_produk');
+            $produk->foto = basename($fotoPath);
+        }
         $data->save();
 
         // Update data terkait di tabel Penjualan
@@ -87,7 +150,7 @@ class ProdukController extends Controller
             $jualan->save();
         }
 
-        return redirect('/produk')->with('pesan', 'Data dengan nama: ' . $request->nama_produk . ' berhasil diupdate');
+        return redirect('/produk/read')->with('pesan', 'Data dengan nama: ' . $request->nama_produk . ' berhasil diupdate');
     }
 
 
@@ -95,6 +158,6 @@ class ProdukController extends Controller
     public function delete($id_produk){
         $produk = Produk::find($id_produk);
         $produk->delete();
-        return redirect('/produk')->with('pesan', 'Data produk berhasil dihapus.');
+        return redirect('/produk/read')->with('pesan', 'Data produk berhasil dihapus.');
     }
 }

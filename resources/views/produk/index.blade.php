@@ -28,38 +28,40 @@
                                 <th data-priority="1">No</th>
                                 <th data-priority="2">Aksi</th>
                                 <th data-priority="3">Produk</th>
-                                <th data-priority="4">Harga</th>
-                                <th data-priority="5">Stok</th>
-                                <th data-priority="6">Kategori</th>
-                                <th data-priority="7">Created_at</th>
-                                <th data-priority="8">Updated_at</th>
+                                <th data-priority="4">Foto</th>
+                                <th data-priority="5">Harga</th>
+                                <th data-priority="6">Stok</th>
+                                <th data-priority="7">Kategori</th>
+                                <th data-priority="8">Created_at</th>
+                                <th data-priority="9">Updated_at</th>
                             </tr>
                         </thead>
                         <tbody class="">
-                            <?php
-                            $num = 1;
-                            foreach($dataAll as $datax){
-                                echo "<tr>
-                                <td>$num</td>
-                                <td class='flex justify-center gap-0'>
-                                    <a href=/produk/update/".$datax->id_produk.">
-                                        <span class='p-2 text-gray-200 scale-75 bg-orange-400 rounded-sm cursor-pointer material-symbols-outlined hover:bg-orange-500'>edit</span>
+                        @foreach($dataAll as $datax)
+                            <tr>
+                                <td>{{ $loop->iteration }}</td>
+                                <td class="flex justify-center gap-0">
+                                    <a href="{{ url('/produk/update', $datax->id_produk) }}">
+                                        <span class="p-2 text-gray-200 scale-75 bg-orange-400 rounded-sm cursor-pointer material-symbols-outlined hover:bg-orange-500">edit</span>
                                     </a>
-                                    <a href=/produk/delete/".$datax->id_produk.">
-                                        <span class='p-2 text-gray-100 scale-75 bg-red-500 rounded-sm cursor-pointer material-symbols-outlined hover:bg-red-600'>delete</span>
+                                    <a href="{{ url('/produk/delete', $datax->id_produk) }}">
+                                        <span class="p-2 text-gray-100 scale-75 bg-red-500 rounded-sm cursor-pointer material-symbols-outlined hover:bg-red-600">delete</span>
                                     </a>
                                 </td>
-                                <td>$datax->nama_produk</td>
-                                <td>Rp$datax->harga</td>
-                                <td>$datax->stok</td>
-                                <td>$datax->kategori</td>
-                                <td>$datax->created_at</td>
-                                <td>$datax->updated_at</td>
-                            </tr>"
-                            ;
-                            $num++;
-                            }
-                            ?>
+                                <td>{{ $datax->nama_produk }}</td>
+                                <td>
+                                    <a href="{{ url('/produk/editfoto', $datax->id_produk) }}">
+                                        <img src="{{ asset("path/to/your/upload/directory/{$datax->foto}") }}" alt="Foto Produk" width="50" height="50">
+                                    </a>
+                                </td>
+                                <td>Rp{{ $datax->harga }}</td>
+                                <td>{{ $datax->stok }}</td>
+                                <td>{{ $datax->kategori }}</td>
+                                <td>{{ $datax->created_at }}</td>
+                                <td>{{ $datax->updated_at }}</td>
+                            </tr>
+                        @endforeach
+
                             
                         </tbody>
                     </table>

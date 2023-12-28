@@ -13,7 +13,7 @@ class Produk extends Model
     public $incrementing = false;
     protected $keyType = 'string';
     public $timestamps = true;
-    protected $fillable = ['nama_produk', 'harga', 'stok', 'kategori'];
+    protected $fillable = ['nama_produk', 'harga', 'stok', 'kategori', 'foto'];
     public function penjualan()
     {
         return $this->hasMany(Penjualan::class, 'id_produk');

@@ -2,7 +2,7 @@
     <x-guest-layout>
         <h1 class='mb-5 text-3xl font-bold text-center'>Tambah Produk</h1>
 
-        <form method="POST" action="{{ url('/produk/save') }}">
+        <form method="POST" action="{{ url('/produk/save') }}" enctype="multipart/form-data">
         @csrf
 
             <!-- Name -->
@@ -50,12 +50,19 @@
                 <x-input-error :messages="$errors->get('kategori')" class="mt-2" />
             </div>
 
+            <div class='mt-3'>
+                <x-input-label for="foto" :value="__('Foto produk')"/>
+                <input type="file" name="foto" id="foto" accept="image/*" class="mt-2"/>
+                <x-input-error :messages="$errors->get('foto')" class="mt-2" />
+            </div>
+
+
             <div class="flex flex-col items-end mt-4">
                 <x-primary-button class="w-full">
                     {{ __('Tambah Produk') }}
                 </x-primary-button>
-                <a href="/produk" class="w-full px-4 py-2 mt-2 text-sm text-center text-white bg-red-500 rounded-md hover:bg-red-600">
-                <button>Batal</button>
+                <a href="/produk/read" class="w-full px-4 py-2 mt-2 text-sm text-center text-white bg-red-500 rounded-md hover:bg-red-600">
+                Batal
                 </a>
             </div>
         </form>
